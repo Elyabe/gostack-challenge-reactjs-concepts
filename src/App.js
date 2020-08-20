@@ -15,7 +15,17 @@ function App() {
   }, [])
   
   async function handleAddRepository() {
-    console.log('handleAddClicked')
+    const payload = {
+      title: `Repository added from FrontEnd at ${Date.now()}`,
+      url: "http://github.com/Elyabe",
+      techs: ["NodeJS", "Tech2"]
+    };
+
+    const response = await api.post('/repositories', payload );
+    const repository = response.data;
+
+    setRepositories([...repositories, repository]);
+
   }
 
   async function handleRemoveRepository(id) {
@@ -29,11 +39,15 @@ function App() {
             return (
                 <li key={repository.id}>
                   <Repositoy 
+                    title={repository.title}
+                    url={repository.url}
+                    techs={repository.techs}
                     onClick={handleRemoveRepository}
                   />
                 </li>
             );
-          })}
+            })
+          }
       </ul>
 
       <button onClick={handleAddRepository}>Adicionar</button>

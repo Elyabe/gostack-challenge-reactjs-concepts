@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Repository({ onClick }){
+function Repository({ onClick, title, url, techs, id }){
 
     return ( 
         <div>
-            Repositório 1
+            {title}
 
             <button onClick={onClick}>
                 Remover
