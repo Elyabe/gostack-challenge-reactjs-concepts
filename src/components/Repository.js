@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Repository({ onClick, title, url, techs, id }){
+function Repository({ handleRemoveRepository, title, url, techs, id }){
 
     return ( 
         <div>
             {title}
 
-            <button onClick={onClick}>
+            <button onClick={() => handleRemoveRepository(id)}>
                 Remover
             </button>
         </div>

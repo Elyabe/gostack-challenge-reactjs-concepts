@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from './services/api';
 
-import Repositoy from './components/Repository';
+import Repository from './components/Repository';
 
 import "./styles.css";
 
@@ -29,7 +29,11 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    console.log('handleRemoveClicked')
+    await api.delete(`/repositories/${id}`);
+
+    const repositoriesUpdated = repositories.filter( repository => repository.id !== id );
+
+    setRepositories(repositoriesUpdated);
   }
 
   return (
@@ -38,11 +42,12 @@ function App() {
           {repositories.map( repository => {
             return (
                 <li key={repository.id}>
-                  <Repositoy 
+                  <Repository 
+                    id={repository.id}
                     title={repository.title}
                     url={repository.url}
                     techs={repository.techs}
-                    onClick={handleRemoveRepository}
+                    handleRemoveRepository={handleRemoveRepository}
                   />
                 </li>
             );
