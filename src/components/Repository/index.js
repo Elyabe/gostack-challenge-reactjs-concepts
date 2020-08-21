@@ -14,7 +14,7 @@ function Repository({ handleRemoveRepository, data: { title, url, techs, id } })
                 <ul>
                     {techs.map( tech => {
                         return (
-                            <li>
+                            <li key={tech}>
                             {tech}
                         </li> 
                         );
