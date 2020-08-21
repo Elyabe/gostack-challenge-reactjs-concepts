@@ -5,13 +5,14 @@
 }
 
 body {
-  font-size: 14px;
+  font-size: 14px sans-serif;
 }
 
 div {
   width: 100%;
   margin: 20px;
 }
+
 
 div li {
   display: flex;
