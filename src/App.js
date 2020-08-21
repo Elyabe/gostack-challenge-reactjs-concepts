@@ -1,7 +1,7 @@
 import React from "react";
 
-import Header from './components/Header/Header';
-import RepositoryList from './components/RepositoryList/RepositoryList';
+import Header from './components/Header';
+import RepositoryList from './components/RepositoryList';
 
 import "./styles.css";
 

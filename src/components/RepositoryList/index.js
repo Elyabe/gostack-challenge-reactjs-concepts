@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 
-import Repository from '../Repository/Repository';
+import Repository from '../Repository';
 
 import './Style.css';
 
@@ -36,22 +36,27 @@ function RepositoryList(){
       setRepositories(repositoriesUpdated);
     }
   
+    const repositoriesIsEmpty = repositories.length === 0;
+
     return (
       <div>
+        { repositoriesIsEmpty && <h1>Não há repositórios :|</h1> }
+        { !repositoriesIsEmpty &&
+          <ul data-testid="repository-list">
+              { repositories.map( repository => {
+                return (
+                    <li key={repository.id}>
+                      <Repository 
+                        data = {repository}
+                        handleRemoveRepository={handleRemoveRepository}
+                      />
+                    </li>
+                );
+                })
+              }
+          </ul>
 
-        <ul data-testid="repository-list">
-            {repositories.map( repository => {
-              return (
-                  <li key={repository.id}>
-                    <Repository 
-                      data = {repository}
-                      handleRemoveRepository={handleRemoveRepository}
-                    />
-                  </li>
-              );
-              })
-            }
-        </ul>
+        }
   
         <button onClick={handleAddRepository}>Adicionar</button>
         
